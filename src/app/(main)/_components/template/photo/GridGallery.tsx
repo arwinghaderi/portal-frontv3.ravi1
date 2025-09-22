@@ -12,7 +12,7 @@ type Props = {
 
 export default function GridGallery({ items, pageInfo }: Props) {
   if (!items.length)
-    return <p className="text-center py-10 text-muted">موردی یافت نشد.</p>
+    return <p className="text-center py-10 text-muted  animate-bounce text-primary">موردی یافت نشد.</p>
 
   return (
     <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">

@@ -28,7 +28,15 @@ export default function GalleryTopSlider({ slides }: { slides: TPortfolio[] }) {
     }
   }
 
-  if (!slides.length) return null
+  if (!slides.length) {
+    return (
+      <div className="w-full max-w-screen-xl mx-auto px-4 aspect-[12/4] sm:px-6 lg:px-8 relative my-10 flex items-center justify-center bg-gray-100 rounded-xl">
+        <div className="text-center  text-sm sm:text-base  animate-bounce text-primary ">
+          هیچ اسلایدی برای نمایش وجود ندارد.
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="w-full max-w-screen-xl mx-auto px-4 aspect-[16/9] sm:px-6 lg:px-8 relative my-10">
