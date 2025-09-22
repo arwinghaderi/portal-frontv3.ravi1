@@ -1,12 +1,13 @@
+// src/app/(main)/gallery/[id]/page.tsx
 import { FGetPortfolioItem } from '@/api/api'
 import VideoDetailsView from '@/app/(main)/_components/template/video/VideoDetailsPage'
 import type { TPortfolio } from '@/types'
 
-export default async function GalleryPage({
-  params,
-}: {
+type PageProps = {
   params: { id: string }
-}) {
+}
+
+export default async function GalleryPage({ params }: PageProps) {
   const { id } = params
   const res = await FGetPortfolioItem({ id, categoryId: 23 })
   const data: TPortfolio = res?.data
