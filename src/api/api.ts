@@ -220,7 +220,7 @@ export async function FGetGalleryItems({
 export async function FGetPortfolioItem({
   id,
 }: {
-  id: number
+  id: string
 }): Promise<TGetPortfolioItem> {
   const res = await fetch(
     process.env.baseUrl + `/api/v1/client/web/getPortfolio/${id}`,

@@ -1,16 +1,30 @@
-// مسیر: src/app/(main)/photo/[id]/page.tsx
+'use client'
 
+import { useEffect, useState } from 'react'
+import { useParams } from 'next/navigation'
 import { FGetPortfolioItem } from '@/api/api'
 import PhotoDetailsView from '@/app/(main)/_components/template/photo/PhotoDetailsView'
+import type { TPortfolio } from '@/types'
 
-export default async function PhotoDetailsPage({
-  params,
-}: {
-  params: { id: string }
-}) {
-  const id = Number(params.id)
+export default function PhotoDetailsPage() {
+  const { id } = useParams()
+  const [data, setData] = useState<TPortfolio | null>(null)
 
-  const res = await FGetPortfolioItem({ id })
+  useEffect(() => {
+    if (id) {
+      FGetPortfolioItem({ id: String(id) }).then((res) => {
+        setData(res?.data)
+      })
+    }
+  }, [id])
 
-  return <PhotoDetailsView data={res?.data} />
+  if (!data) {
+    return (
+      <div className="min-h-[600px] flex items-center justify-center text-primary animate-ping">
+        در حال بارگذاری...
+      </div>
+    )
+  }
+
+  return <PhotoDetailsView data={data} />
 }
