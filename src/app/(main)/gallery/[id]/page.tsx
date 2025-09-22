@@ -9,7 +9,6 @@ export default async function VideoDetailsPage({
   params: { id: string }
 }) {
   const { id } = params
-
   const res = await FGetPortfolioItem({ id, categoryId: 23 })
   const data: TPortfolio = res?.data
 
