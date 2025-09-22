@@ -1,21 +1,17 @@
-// src/app/(main)/gallery/[id]/page.tsx
+
 import { FGetPortfolioItem } from '@/api/api'
-import VideoDetailsView from '@/app/(main)/_components/template/video/VideoDetailsPage'
 import type { TPortfolio } from '@/types'
+import VideoDetailsView from '@/app/(main)/_components/template/video/VideoDetailsPage'
 
-type PageProps = {
-  params: { id: string }
-}
-
-export default async function GalleryPage({ params }: PageProps) {
-  const { id } = params
+export default async function GalleryPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
   const res = await FGetPortfolioItem({ id, categoryId: 23 })
   const data: TPortfolio = res?.data
 
   if (!data) {
     return (
-      <div className="min-h-[600px] flex items-center justify-center text-primary animate-bounce">
-        گالری یافت نشد.
+      <div className="min-h-[600px] flex items-center justify-center  animate-bounce  text-primary">
+        موردی یافت نشد.
       </div>
     )
   }

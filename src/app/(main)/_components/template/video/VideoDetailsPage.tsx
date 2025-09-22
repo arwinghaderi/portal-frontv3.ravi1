@@ -23,7 +23,7 @@ export default function VideoDetailsView({ data }: { data: TPortfolio }) {
         </div>
         <div className="mt-6">
           <h4 className="text-sm text-gray-500 font-medium break-words">
-            {creator.firstName} {creator.lastName}
+            {creator?.firstName ?? ''} {creator?.lastName ?? ''}
           </h4>
           <h1 className="text-xl sm:text-2xl font-bold text-black mt-1 line-clamp-1">
             {title}
@@ -37,9 +37,9 @@ export default function VideoDetailsView({ data }: { data: TPortfolio }) {
           <video
             src={videoUrl}
             controls
-            autoPlay
             muted
             loop
+            playsInline
             className="w-full h-full object-cover"
           />
         </div>
