@@ -1,14 +1,16 @@
 // src/app/(main)/video/[id]/page.tsx
-
 import { FGetPortfolioItem } from '@/api/api'
 import VideoDetailsView from '@/app/(main)/_components/template/video/VideoDetailsPage'
 import type { TPortfolio } from '@/types'
 
-export default async function VideoDetailsPage(
-  props: Promise<{ params: { id: string } }>
-) {
-  const { params } = await props
-  const res = await FGetPortfolioItem({ id: params.id, categoryId: 27 })
+export default async function VideoDetailsPage({
+  params,
+}: {
+  params: { id: string }
+}) {
+  const { id } = params
+
+  const res = await FGetPortfolioItem({ id, categoryId: 23 })
   const data: TPortfolio = res?.data
 
   if (!data) {
