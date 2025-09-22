@@ -13,7 +13,7 @@ export default function HeroSlider({ posts }: { posts: TPostItem[] }) {
   if (!posts.length) return null
 
   return (
-    <div className="w-full relative z-[1]">
+    <div className="w-full  h-screen relative z-[1]">
       <Swiper
         modules={[Autoplay, Navigation, Pagination]}
         autoplay={{ delay: 3000 }}
@@ -31,12 +31,12 @@ export default function HeroSlider({ posts }: { posts: TPostItem[] }) {
       >
         {posts.map((post) => (
           <SwiperSlide key={post.id}>
-            <div className="relative w-full aspect-[16/9] lg:min-h-screen overflow-hidden">
+            <div className="relative w-full aspect-[16/9] sm:aspect-[16/8] md:aspect-[16/7.5] overflow-hidden">
               <Image
                 src={post.files[0]?.url || '/images/image-placeholder.jpg'}
                 alt={post.title}
                 fill
-                className="object-cover h-full w-full"
+                className="object-cover object-center"
                 priority
               />
               <Link
@@ -44,13 +44,20 @@ export default function HeroSlider({ posts }: { posts: TPostItem[] }) {
                 className="absolute inset-0 z-[3] cursor-pointer"
                 aria-label={post.title}
               />
-              <div className="absolute bottom-0 left-0 w-full h-[30%] pointer-events-none z-[2] bg-gradient-to-t from-white/80 to-transparent" />
+
+              <div className="absolute inset-0 z-[2] bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+
+              <div className="absolute bottom-1.5 sm:bottom-5 md:bottom-8  xl:bottom-10 left-6 right-6 z-[4] text-shadow-md">
+                <h2 className=" text-base sm:text-lg lg:text-2xl   leading-9 lin font-bold  text-primary transition-colors line-clamp-1">
+                  {post.title}
+                </h2>
+              </div>
             </div>
           </SwiperSlide>
         ))}
 
         <div className="absolute z-[5] flex flex-col gap-3 right-[4%] bottom-[50%] justify-center items-center w-auto">
-          <button className="hero-prev cursor-pointer bg-white/80 backdrop-blur-2xl border-black/80 border-1 text-primary rounded-full p-1 sm:p-2 shadow-md hover:bg-primary hover:text-white transition">
+          {/* <button className="hero-prev cursor-pointer bg-white/80 backdrop-blur-2xl border-black/80 border-1 text-primary rounded-full p-1 sm:p-2 shadow-md hover:bg-primary hover:text-white transition">
             <svg
               className="w-5 h-5 sm:w-8 sm:h-8"
               fill="none"
@@ -71,7 +78,7 @@ export default function HeroSlider({ posts }: { posts: TPostItem[] }) {
             >
               <path d="M19 12H5m6-6l-6 6 6 6" />
             </svg>
-          </button>
+          </button> */}
         </div>
       </Swiper>
     </div>
