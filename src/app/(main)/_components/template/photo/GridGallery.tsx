@@ -27,9 +27,17 @@ export default function GridGallery({ items, pageInfo }: Props) {
             className="group rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 bg-white"
           >
             <Link
-              href={`/photo/${item.id}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={
+                item.media?.[0]?.type === 'video'
+                  ? `/gallery/${item.id}`
+                  : `/photo/${item.id}`
+              }
+              target={item.media?.[0]?.type === 'video' ? undefined : '_blank'}
+              rel={
+                item.media?.[0]?.type === 'video'
+                  ? undefined
+                  : 'noopener noreferrer'
+              }
               className="block"
             >
               <figure className="relative w-full aspect-[16/9] overflow-hidden">
@@ -43,10 +51,9 @@ export default function GridGallery({ items, pageInfo }: Props) {
                       playsInline
                       controls={false}
                     />
-                    {/* Play icon overlay */}
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                       <svg
-                        className="w-14 h-14 md:w-18 md:h-18  text-white opacity-80"
+                        className="w-14 h-14 md:w-18 md:h-18 text-white opacity-80"
                         fill="currentColor"
                         viewBox="0 0 24 24"
                       >
@@ -68,7 +75,7 @@ export default function GridGallery({ items, pageInfo }: Props) {
               </figure>
 
               <div className="p-4">
-                <h3 className=" text-sm md:text-lg font-bold text-primary group-hover:text-primary/80 transition-colors truncate whitespace-nowrap overflow-hidden">
+                <h3 className="text-sm md:text-lg font-bold text-primary group-hover:text-primary/80 transition-colors truncate whitespace-nowrap overflow-hidden">
                   {item.title}
                 </h3>
 

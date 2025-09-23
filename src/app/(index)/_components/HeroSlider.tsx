@@ -14,10 +14,10 @@ export default function HeroSlider({ posts }: { posts: TPostItem[] }) {
   if (!posts.length) return null
 
   return (
-    <div className="w-full h-screen relative z-[1]">
+    <div className="w-full  z-[1]">
       <Swiper
         modules={[Autoplay, Navigation, Pagination]}
-        autoplay={{ delay: 3000 }}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
         navigation={{
           nextEl: '.hero-next',
           prevEl: '.hero-prev',
@@ -28,34 +28,35 @@ export default function HeroSlider({ posts }: { posts: TPostItem[] }) {
           bulletActiveClass: 'custom-bullet-active',
         }}
         loop
-        className="w-full h-fit"
+        className="w-full h-[65vh] sm:h-[70vh] md:h-[80vh] lg:h-screen relative"
       >
         {posts.map((post) => (
-          <SwiperSlide key={post.id}>
-            <Image
-              src={post.files[0]?.url || '/images/image-placeholder.jpg'}
-              alt={post.title}
-              fill
-              className="object-cover object-center"
-              priority
-            />
+          <SwiperSlide key={post.id} className="relative w-full h-full">
+            <div className="absolute inset-0 w-full h-full">
+              <Image
+                src={post.files[0]?.url || '/images/image-placeholder.jpg'}
+                alt={post.title}
+                fill
+                className="object-cover object-center w-full h-full"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-l from-black/60 via-black/30 to-transparent" />
+            </div>
+
             <Link
               href={`/news/${post.url || '#'}`}
-              className="absolute inset-0 z-[3] cursor-pointer"
+              className="absolute inset-0 z-[10] cursor-pointer"
               aria-label={post.title}
             />
 
-            {/* گرادیانت برای خواناتر شدن متن */}
-            <div className="absolute inset-0 z-[2] bg-gradient-to-l from-black/60 via-black/30 to-transparent" />
-
-            {/* محتوای متنی با فلکس */}
-            <div className="relative z-[4] flex items-center justify-start h-full px-4 sm:px-12">
-              <div className="w-[80%] sm:w-auto max-w-xs sm:max-w-lg text-right text-white drop-shadow-md">
-                <h2 className="text-lg sm:text-2xl lg:text-4xl font-bold mb-3 leading-12 tracking-tighter line-clamp-2 text-shadow-2xs text-primary">
+            {/* محتوای متنی */}
+            <div className="absolute inset-0 z-[20] flex items-center px-4 sm:px-12">
+              <div className=" w-1/2  md:w-1/3 text-right text-white drop-shadow-md">
+                <h2 className="text-lg sm:text-2xl md:text-2xl lg:text-4xl font-bold mb-1.5 lg:mb-3 leading-snug sm:leading-tight lg:leading-tight line-clamp-2 text-primary">
                   {post.title}
                 </h2>
                 <InnerHTML
-                  style="text-sm sm:text-base lg:text-lg text-shadow-2xs line-clamp-4"
+                  style="text-sm sm:text-base lg:text-lg line-clamp-3"
                   details={post?.htmlCode || ''}
                 />
               </div>
