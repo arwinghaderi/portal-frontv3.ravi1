@@ -112,21 +112,21 @@ body {
     url("/fonts/Woff2/IRANYekanXFaNum-Regular.woff2") format("woff2");
 }
 
-.ql-editor {
-  direction: rtl;
-  text-align: right;
+.ql-editor,
+.ql-editor * {
+  color: inherit !important;
 }
 
 .ql-editor {
   direction: rtl;
   text-align: right;
+  color: white !important;
   font-family: var(--font-iranYekan), sans-serif !important;
 }
 
 .rtl .ql-editor {
   direction: rtl;
   text-align: right;
-  font-family: var(--font-iranYekan), sans-serif !important;
 }
 
 .ltr .ql-editor {

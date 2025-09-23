@@ -16,6 +16,7 @@ export default function GalleryTopSlider({ slides }: { slides: TPortfolio[] }) {
   const progressContent = useRef<HTMLSpanElement>(null)
 
   const onAutoplayTimeLeft = (_swiper: any, time: number) => {
+    if (slides.length <= 1) return
     const total = _swiper.params.autoplay?.delay || 4000
     const percent = 1 - time / total
     const offset = 125.6 * percent
@@ -37,6 +38,7 @@ export default function GalleryTopSlider({ slides }: { slides: TPortfolio[] }) {
       </div>
     )
   }
+
 
   return (
     <div className="w-full max-w-screen-xl mx-auto px-4 aspect-[16/9] sm:px-6 lg:px-8 relative my-10">
@@ -60,24 +62,31 @@ export default function GalleryTopSlider({ slides }: { slides: TPortfolio[] }) {
         className="rounded-xl overflow-hidden"
       >
         {slides.map((item) => {
-          const imageUrl = item.media?.[0]?.url || ''
           return (
             <SwiperSlide key={item.id}>
-              <Link href={`/photo/${item.id}`} className="block">
+              <Link href={`/gallery/${item.id}`} className="block">
                 <div className="relative w-full aspect-[16/14] md:aspect-[16/9]">
-                  {imageUrl ? (
+                  {item.media?.[0]?.type === 'image' && item.media?.[0]?.url ? (
                     <Image
-                      src={imageUrl}
+                      src={item.media[0].url}
                       alt={item.title}
                       fill
                       className="object-cover object-center"
                       priority
                     />
+                  ) : item.media?.[0]?.type === 'video' &&
+                    item.media?.[0]?.url ? (
+                    <video
+                      src={item.media[0].url}
+                      controls
+                      className="w-full h-full object-cover object-center"
+                    />
                   ) : (
                     <div className="w-full h-full bg-gray-200 flex items-center justify-center text-sm text-gray-500">
-                      تصویر موجود نیست
+                      رسانه‌ای برای نمایش وجود ندارد
                     </div>
                   )}
+
                   <div className="absolute bottom-0 left-0 right-0 transition-all duration-300 hover:text-primary bg-gradient-to-t from-black/70 to-transparent text-white p-4">
                     <h3 className="text-sm sm:text-xl font-bold line-clamp-1 overflow-hidden">
                       {item.title}
