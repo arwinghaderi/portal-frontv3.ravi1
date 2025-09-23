@@ -14,7 +14,7 @@ enum KeyValues {
   HERO_TITLE = 'hero-title',
   HERO_IMAGE = 'hero-image',
   SUBCATEGORIES_LOGO = 'subCategories-logo', //many seperated by -number
-  SUBCATEGORIES_DETAIL = 'subCategories-detail', //many seperated by -number
+  SUBCATEGORIES_DETAIL =  'subCategories-detail', //many seperated by -number
 }
 
 export default function Hero({
