@@ -9,7 +9,7 @@ export default async function PhotoPage() {
   const gridRes = await FGetGalleryItems({ categoryId: 23, isSlider: false })
   const gridItems = gridRes?.data || []
   const gridMeta = gridRes?.meta || {}
-
+  console.log(sliderItems)
   return (
     <>
       <GalleryTopSlider slides={sliderItems} />
@@ -17,4 +17,3 @@ export default async function PhotoPage() {
     </>
   )
 }
- 

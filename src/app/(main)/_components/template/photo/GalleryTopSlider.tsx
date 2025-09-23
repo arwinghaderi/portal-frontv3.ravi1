@@ -62,7 +62,14 @@ export default function GalleryTopSlider({ slides }: { slides: TPortfolio[] }) {
       >
         {slides.map((item) => (
           <SwiperSlide key={item.id}>
-            <Link href={`/gallery/${item.id}`} className="block">
+            <Link
+              href={
+                item.media[0].type === 'image'
+                  ? `/photo/${item.id}`
+                  : `/gallery/${item.id}`
+              }
+              className="block"
+            >
               <div className="relative w-full aspect-[16/14] md:aspect-[16/9]">
                 {item.media[0].type === 'image' ? (
                   <Image
