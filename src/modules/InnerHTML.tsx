@@ -7,8 +7,8 @@ export default function InnerHTML({ details, style }: InnerHTMLProps) {
   return (
     <div className={`rtl p-0 ${style || ''}`}>
       <div
-        className="ql-editor w-full"
-        style={{ color: 'inherit' }} // متن رنگش رو از والد می‌گیره
+        className="ql-editor w-full "
+        // style={{ color: 'inherit' }} 
         dangerouslySetInnerHTML={{ __html: details || '' }}
       />
     </div>

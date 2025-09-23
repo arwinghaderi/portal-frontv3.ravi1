@@ -259,7 +259,7 @@ export default function Hero({
           onMouseLeave={() => setIsHovering(false)}
         >
           <InnerHTML
-            style="w-full max-w-[675px] [&>div>p>a]:text-blue-500 [&>div>p>a]:underline [&>div>p>a]:underline-offset-5 transition-opacity duration-500 ease-in-out"
+            style="w-full max-w-[675px]    text-black [&>div>p>a]:text-blue-500 [&>div>p>a]:underline [&>div>p>a]:underline-offset-5 transition-opacity duration-500 ease-in-out"
             details={
               details?.find((detail) =>
                 detail.key.endsWith(`-${activeSubCategoryNumber}`)
